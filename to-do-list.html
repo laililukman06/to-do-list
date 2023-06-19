@@ -44,7 +44,8 @@
         const todolist=[
             "Belajar Javascript Dasar",
             "Belajar Javascript Object Oriented Programming",
-            "Belajar Javascript Document Object Model"
+            "Belajar Javascript Document Object Model",
+            "Belajar Git"
         ];
 
         function clearTodolist () {
@@ -54,7 +55,12 @@
             }
         }
 
-        function addTodolist(todo) {
+        function removeTodolist(index) {
+            todolist.splice(index, 1);
+            displayTodolist();
+        }
+
+        function addTodolist(index, todo) {
                 const tr = document.createElement("tr");
                 const tdButton = document.createElement("td");
                 tr.appendChild(tdButton);
@@ -62,6 +68,9 @@
                 const buttonDone =document.createElement("input");
                 buttonDone.type = "button";
                 buttonDone.value = "Done";
+                buttonDone.onclick = function () {
+                    removeTodolist();
+                }
                 tdButton.appendChild(buttonDone);
 
                 const tdTodo = document.createElement("td");
@@ -81,7 +90,7 @@
                 const searchText = document.getElementById("search").value.toLowerCase();
 
                 if (todo.toLowerCase().includes(searchText)) {
-                    addTodolist(todo);
+                    addTodolist(i, todo);
                 }
             }
         }
